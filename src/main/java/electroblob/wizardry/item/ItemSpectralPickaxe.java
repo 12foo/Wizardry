@@ -75,6 +75,7 @@ public class ItemSpectralPickaxe extends ItemPickaxe implements IConjuredItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems){
+		if (tab != this.getCreativeTab()) return;
 		subItems.add(new ItemStack(this, 1));
 	}
 

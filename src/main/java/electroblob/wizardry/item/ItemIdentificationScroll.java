@@ -89,6 +89,7 @@ public class ItemIdentificationScroll extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs parTab, NonNullList<ItemStack> parListSubItems){
+		if (parTab != this.getCreativeTab()) return;
 		parListSubItems.add(new ItemStack(this, 1));
 	}
 }

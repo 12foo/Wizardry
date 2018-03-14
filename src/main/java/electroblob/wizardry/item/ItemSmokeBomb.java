@@ -46,6 +46,7 @@ public class ItemSmokeBomb extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems){
+		if (tab != this.getCreativeTab()) return;
 		subItems.add(new ItemStack(this, 1));
 	}
 }

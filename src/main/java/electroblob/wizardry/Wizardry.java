@@ -161,8 +161,6 @@ public class Wizardry {
 		// Recipes
 		WizardryRegistry.registerRecipes();
 
-		WizardryTabs.sort();
-
 		proxy.initGuiBits();
 	}
 
@@ -175,6 +173,7 @@ public class Wizardry {
 		 * '|'; } } // Cuts off the last '|' entityNames = entityNames.substring(0, entityNames.length()-1);
 		 * entityNamePattern = Pattern.compile(entityNames); */
 		proxy.initialiseLayers();
+		WizardryTabs.sort();
 	}
 
 	@EventHandler

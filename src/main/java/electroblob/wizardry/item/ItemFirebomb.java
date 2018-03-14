@@ -45,6 +45,7 @@ public class ItemFirebomb extends Item {
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (tab != this.getCreativeTab()) return;
 		items.add(new ItemStack(this, 1));
 	}
 }

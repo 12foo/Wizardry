@@ -83,6 +83,7 @@ public class ItemFlamingAxe extends ItemAxe implements IConjuredItem {
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items){
+		if (tab != this.getCreativeTab()) return;
 		items.add(new ItemStack(this, 1));
 	}
 

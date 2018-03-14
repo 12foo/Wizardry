@@ -36,6 +36,7 @@ public class ItemSpellBook extends Item {
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list){
+		if (tab != this.getCreativeTab()) return;
 		// In this particular case, getTotalSpellCount() is a more efficient way of doing this since the spell instance
 		// is not required, only the id.
 		for(int i = 0; i < Spell.getTotalSpellCount(); i++){
@@ -63,7 +64,7 @@ public class ItemSpellBook extends Item {
 			Spell spell = Spell.get(itemstack.getItemDamage());
 
 			boolean discovered = true;
-			if(Wizardry.settings.discoveryMode && !player.capabilities.isCreativeMode && WizardData.get(player) != null
+			if(player != null && Wizardry.settings.discoveryMode && !player.capabilities.isCreativeMode && WizardData.get(player) != null
 					&& !WizardData.get(player).hasSpellBeenDiscovered(spell)){
 				discovered = false;
 			}

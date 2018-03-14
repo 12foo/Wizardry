@@ -28,6 +28,7 @@ public class ItemArcaneTome extends Item {
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (tab != this.getCreativeTab()) return;
 		for(int i = 1; i < Tier.values().length; i++){
 			items.add(new ItemStack(this, 1, i));
 		}

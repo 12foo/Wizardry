@@ -34,6 +34,7 @@ public class ItemScroll extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs par2CreativeTabs, NonNullList<ItemStack> list){
+		if (par2CreativeTabs != this.getCreativeTab()) return;
 		for(Spell spell : Spell.getSpells(Spell.nonContinuousSpells)){
 			list.add(new ItemStack(this, 1, spell.id()));
 		}

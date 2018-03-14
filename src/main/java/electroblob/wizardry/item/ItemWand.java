@@ -92,6 +92,7 @@ public class ItemWand extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs parTab, NonNullList<ItemStack> parListSubItems){
+		if (parTab != this.getCreativeTab()) return;
 		parListSubItems.add(new ItemStack(this, 1));
 	}
 
@@ -163,7 +164,7 @@ public class ItemWand extends Item {
 		Spell spell = WandHelper.getCurrentSpell(itemstack);
 
 		boolean discovered = true;
-		if(Wizardry.settings.discoveryMode && !player.capabilities.isCreativeMode && WizardData.get(player) != null
+		if(player != null && Wizardry.settings.discoveryMode && !player.capabilities.isCreativeMode && WizardData.get(player) != null
 				&& !WizardData.get(player).hasSpellBeenDiscovered(spell)){
 			discovered = false;
 		}

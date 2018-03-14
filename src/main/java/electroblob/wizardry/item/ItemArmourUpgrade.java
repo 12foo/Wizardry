@@ -45,6 +45,7 @@ public class ItemArmourUpgrade extends Item {
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems){
+		if (tab != this.getCreativeTab()) return;
 		subItems.add(new ItemStack(this, 1));
 	}
 

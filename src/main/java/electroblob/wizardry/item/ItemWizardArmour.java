@@ -140,14 +140,14 @@ public class ItemWizardArmour extends ItemArmor implements ISpecialArmor {
 		// Do note however that a texture pack could override this.
 		if(entity instanceof EntityLivingBase && ((EntityLivingBase)entity).isInvisible()
 				&& !entity.getEntityData().getBoolean(Petrify.NBT_KEY))
-			return "wizardry:textures/armour/invisible_armour.png";
+			return "ebwizardry:textures/armour/invisible_armour.png";
 
 		if(slot == EntityEquipmentSlot.LEGS)
-			return this.element == null ? "wizardry:textures/armour/wizard_armour_legs.png"
-					: "wizardry:textures/armour/wizard_armour_" + this.element.getUnlocalisedName() + "_legs.png";
+			return this.element == null ? "ebwizardry:textures/armour/wizard_armour_legs.png"
+					: "ebwizardry:textures/armour/wizard_armour_" + this.element.getUnlocalisedName() + "_legs.png";
 
-		return this.element == null ? "wizardry:textures/armour/wizard_armour.png"
-				: "wizardry:textures/armour/wizard_armour_" + this.element.getUnlocalisedName() + ".png";
+		return this.element == null ? "ebwizardry:textures/armour/wizard_armour.png"
+				: "ebwizardry:textures/armour/wizard_armour_" + this.element.getUnlocalisedName() + ".png";
 	}
 
 	@Override
@@ -208,6 +208,7 @@ public class ItemWizardArmour extends ItemArmor implements ISpecialArmor {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems){
+		if (tab != this.getCreativeTab()) return;
 		subItems.add(new ItemStack(this, 1));
 	}
 

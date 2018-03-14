@@ -1,14 +1,14 @@
 {
     "display": {
+        "title": {
+            "translate": "achievement.self_destruct"
+        },
+        "description": {
+            "translate": "achievement.self_destruct.desc"
+        },
         "icon": {
             "item": "minecraft:pumpkin"
         }
-    },
-    "title": {
-        "translate": "achievement.self_destruct"
-    },
-    "description": {
-        "translate": "achievement.self_destruct.desc"
     },
     "parent": "ebwizardry:arcane_initiate",
     "criteria": {

@@ -1,14 +1,14 @@
 {
     "display": {
+        "title": {
+            "translate": "achievement.armour_set"
+        },
+        "description": {
+            "translate": "achievement.armour_set.desc"
+        },
         "icon": {
             "item": "ebwizardry:wizard_hat"
         }
-    },
-    "title": {
-        "translate": "achievement.armour_set"
-    },
-    "description": {
-        "translate": "achievement.armour_set.desc"
     },
     "parent": "ebwizardry:arcane_initiate",
     "criteria": {

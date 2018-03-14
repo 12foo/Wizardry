@@ -1,14 +1,14 @@
 {
     "display": {
+        "title": {
+            "translate": "achievement.special_upgrade"
+        },
+        "description": {
+            "translate": "achievement.special_upgrade.desc"
+        },
         "icon": {
             "item": "ebwizardry:condenser_upgrade"
         }
-    },
-    "title": {
-        "translate": "achievement.special_upgrade"
-    },
-    "description": {
-        "translate": "achievement.special_upgrade.desc"
     },
     "parent": "ebwizardry:arcane_initiate",
     "criteria": {

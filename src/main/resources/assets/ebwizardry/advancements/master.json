@@ -1,14 +1,14 @@
 {
     "display": {
+        "title": {
+            "translate": "achievement.master"
+        },
+        "description": {
+            "translate": "achievement.master.desc"
+        },
         "icon": {
             "item": "ebwizardry:master_wand"
         }
-    },
-    "title": {
-        "translate": "achievement.master"
-    },
-    "description": {
-        "translate": "achievement.master.desc"
     },
     "parent": "ebwizardry:apprentice",
     "criteria": {

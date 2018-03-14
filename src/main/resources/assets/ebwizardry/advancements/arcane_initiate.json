@@ -1,14 +1,14 @@
 {
     "display": {
+        "title": {
+            "translate": "achievement.arcane_initiate"
+        },
+        "description": {
+            "translate": "achievement.arcane_initiate.desc"
+        },
         "icon": {
             "item": "ebwizardry:magic_wand"
         }
-    },
-    "title": {
-        "translate": "achievement.arcane_initiate"
-    },
-    "description": {
-        "translate": "achievement.arcane_initiate.desc"
     },
     "parent": "ebwizardry:crystal",
     "criteria": {

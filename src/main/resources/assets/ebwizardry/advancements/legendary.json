@@ -1,14 +1,14 @@
 {
     "display": {
+        "title": {
+            "translate": "achievement.legendary"
+        },
+        "description": {
+            "translate": "achievement.legendary.desc"
+        },
         "icon": {
             "item": "ebwizardry:armour_upgrade"
         }
-    },
-    "title": {
-        "translate": "achievement.legendary"
-    },
-    "description": {
-        "translate": "achievement.legendary.desc"
     },
     "parent": "ebwizardry:armour_set",
     "criteria": {

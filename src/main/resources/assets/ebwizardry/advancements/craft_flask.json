@@ -1,14 +1,14 @@
 {
     "display": {
+        "title": {
+            "translate": "achievement.craft_flask"
+        },
+        "description": {
+            "translate": "achievement.craft_flask.desc"
+        },
         "icon": {
             "item": "ebwizardry:mana_flask"
         }
-    },
-    "title": {
-        "translate": "achievement.craft_flask"
-    },
-    "description": {
-        "translate": "achievement.craft_flask.desc"
     },
     "parent": "ebwizardry:arcane_initiate",
     "criteria": {

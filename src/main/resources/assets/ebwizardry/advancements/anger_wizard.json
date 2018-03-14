@@ -2,13 +2,13 @@
     "display": {
         "icon": {
             "item": "minecraft:iron_sword"
+        },
+        "title": {
+            "translate": "achievement.anger_wizard"
+        },
+        "description": {
+            "translate": "achievement.anger_wizard.desc"
         }
-    },
-    "title": {
-        "translate": "achievement.anger_wizard"
-    },
-    "description": {
-        "translate": "achievement.anger_wizard.desc"
     },
     "parent": "ebwizardry:wizard_trade",
     "criteria": {

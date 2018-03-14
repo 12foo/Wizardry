@@ -1,14 +1,14 @@
 {
     "display": {
+        "title": {
+            "translate": "achievement.crystal"
+        },
+        "description": {
+            "translate": "achievement.crystal.desc"
+        },
         "icon": {
             "item": "ebwizardry:magic_crystal"
         }
-    },
-    "title": {
-        "translate": "achievement.crystal"
-    },
-    "description": {
-        "translate": "achievement.crystal.desc"
     },
     "parent": "ebwizardry:root",
     "criteria": {

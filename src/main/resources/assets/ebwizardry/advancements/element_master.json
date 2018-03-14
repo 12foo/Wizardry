@@ -1,14 +1,14 @@
 {
     "display": {
+        "title": {
+            "translate": "achievement.element_master"
+        },
+        "description": {
+            "translate": "achievement.element_master.desc"
+        },
         "icon": {
             "item": "ebwizardry:master_ice_wand"
         }
-    },
-    "title": {
-        "translate": "achievement.element_master"
-    },
-    "description": {
-        "translate": "achievement.element_master.desc"
     },
     "parent": "ebwizardry:elemental",
     "criteria": {

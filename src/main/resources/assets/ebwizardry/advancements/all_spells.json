@@ -2,13 +2,13 @@
     "display": {
         "icon": {
             "item": "ebwizardry:wizard_handbook"
+        },
+        "title": {
+            "translate": "achievement.all_spells"
+        },
+        "description": {
+            "translate": "achievement.all_spells.desc"
         }
-    },
-    "title": {
-        "translate": "achievement.all_spells"
-    },
-    "description": {
-        "translate": "achievement.all_spells.desc"
     },
     "parent": "ebwizardry:master",
     "criteria": {

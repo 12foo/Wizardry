@@ -3,7 +3,7 @@ package electroblob.wizardry.spell;
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.constants.SpellType;
 import electroblob.wizardry.constants.Tier;
-import electroblob.wizardry.registry.WizardryAchievements;
+import electroblob.wizardry.registry.WizardryAdvancementTriggers;
 import electroblob.wizardry.util.SpellModifiers;
 import electroblob.wizardry.util.WizardryUtilities;
 import net.minecraft.entity.EntityLiving;
@@ -12,6 +12,7 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
@@ -109,11 +110,11 @@ public class LightningBolt extends Spell {
 					event.getLightning().getEntityData().getUniqueId("summoningPlayer"));
 
 			if(event.getEntity() instanceof EntityCreeper){
-				player.addStat(WizardryAchievements.charge_creeper);
+				WizardryAdvancementTriggers.charge_creeper.triggerFor((EntityPlayerMP)player);
 			}
 
 			if(event.getEntity() instanceof EntityPig){
-				player.addStat(WizardryAchievements.frankenstein);
+				WizardryAdvancementTriggers.frankenstein.triggerFor((EntityPlayerMP)player);
 			}
 		}
 

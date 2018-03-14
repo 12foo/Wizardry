@@ -12,7 +12,6 @@ import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.constants.Tier;
 import electroblob.wizardry.item.ItemSpellBook;
 import electroblob.wizardry.registry.Spells;
-import electroblob.wizardry.registry.WizardryAchievements;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardryPotions;
 import electroblob.wizardry.registry.WizardrySounds;
@@ -316,15 +315,6 @@ public class EntityEvilWizard extends EntityMob implements ISpellCaster, IEntity
 	@Override
 	protected ResourceLocation getLootTable(){
 		return LOOT_TABLE;
-	}
-
-	@Override
-	public void onDeath(DamageSource source){
-
-		super.onDeath(source);
-		if(source.getTrueSource() instanceof EntityPlayer){
-			((EntityPlayer)source.getTrueSource()).addStat(WizardryAchievements.defeat_evil_wizard);
-		}
 	}
 
 	@Override

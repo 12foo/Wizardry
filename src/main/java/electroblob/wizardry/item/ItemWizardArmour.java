@@ -5,18 +5,19 @@ import java.util.List;
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.constants.Constants;
 import electroblob.wizardry.constants.Element;
-import electroblob.wizardry.registry.WizardryAchievements;
+import electroblob.wizardry.registry.WizardryAdvancementTriggers;
 import electroblob.wizardry.registry.WizardryTabs;
 import electroblob.wizardry.spell.Petrify;
 import electroblob.wizardry.util.WizardryUtilities;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -241,7 +242,7 @@ public class ItemWizardArmour extends ItemArmor implements ISpecialArmor {
 				}
 			}
 			// If it gets this far, then all slots must be wizard armour, so trigger the achievement.
-			player.addStat(WizardryAchievements.armour_set);
+			WizardryAdvancementTriggers.armour_set.triggerFor((EntityPlayerMP)player);
 		}
 	}
 

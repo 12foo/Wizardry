@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "minecraft:saddle"
+        }
+    },
+    "title": {
+        "translate": "achievement.pig_tornado"
+    },
+    "description": {
+        "translate": "achievement.pig_tornado.desc"
+    },
+    "parent": "ebwizardry:apprentice",
+    "criteria": {
+        "criteria_0": {
+            "trigger": "ebwizardry:trigger_pig_tornado"
+        }
+    }
+}

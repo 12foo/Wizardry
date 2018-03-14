@@ -183,7 +183,7 @@ public class ItemSpectralBow extends ItemBow implements IConjuredItem {
 
 					ItemArrow itemarrow = (ItemArrow)Items.ARROW;
 					EntityArrow entityarrow = itemarrow.createArrow(world, new ItemStack(itemarrow), entityplayer);
-					entityarrow.setAim(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F,
+					entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F,
 							f * 3.0F, 1.0F);
 
 					if(f == 1.0F){
@@ -222,7 +222,7 @@ public class ItemSpectralBow extends ItemBow implements IConjuredItem {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems){
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems){
 		subItems.add(new ItemStack(this, 1));
 	}
 

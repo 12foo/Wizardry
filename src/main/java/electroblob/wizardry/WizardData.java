@@ -1,14 +1,5 @@
 package electroblob.wizardry;
 
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.UUID;
-
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.enchantment.Imbuement;
 import electroblob.wizardry.entity.EntityShield;
@@ -20,7 +11,7 @@ import electroblob.wizardry.packet.PacketPlayerSync;
 import electroblob.wizardry.packet.PacketTransportation;
 import electroblob.wizardry.packet.WizardryPacketHandler;
 import electroblob.wizardry.registry.Spells;
-import electroblob.wizardry.registry.WizardryAchievements;
+import electroblob.wizardry.registry.WizardryAdvancementTriggers;
 import electroblob.wizardry.spell.None;
 import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.MagicDamage;
@@ -57,6 +48,10 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+
+import java.lang.ref.WeakReference;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Capability-based replacement for the old ExtendedPlayer class from 1.7.10. This has been reworked to leave minimum
@@ -178,13 +173,13 @@ public class WizardData implements INBTSerializable<NBTTagCompound> {
 		if(!spellsDiscovered.add(spell)) return false;
 		// If the spell had not already been discovered, achievements can be triggered and the method returns true
 		if(spellsDiscovered.containsAll(Spell.getSpells(Spell::isEnabled))){
-			this.player.addStat(WizardryAchievements.all_spells);
+			WizardryAdvancementTriggers.all_spells.triggerFor((EntityPlayerMP)this.player);
 		}
 
 		for(Element element : Element.values()){
 			if(element != Element.MAGIC
 					&& spellsDiscovered.containsAll(Spell.getSpells(new Spell.TierElementFilter(null, element)))){
-				this.player.addStat(WizardryAchievements.element_master);
+				WizardryAdvancementTriggers.element_master.triggerFor((EntityPlayerMP)this.player);
 			}
 		}
 

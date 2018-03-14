@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 /**
  * Class responsible for defining, storing and registering all of wizardry's potion effects.
@@ -82,7 +82,7 @@ public final class WizardryPotions {
 
 	/**
 	 * Sets both the registry and unlocalised names of the given potion, then registers it with the given registry. Use
-	 * this instead of {@link potion#setRegistryName(String)} and {@link potion#setUnlocalizedName(String)} during
+	 * this instead of {@link Potion#setRegistryName(String)} and {@link Potion#setUnlocalizedName(String)} during
 	 * construction, for convenience and consistency.
 	 * 
 	 * @param registry The registry to register the given potion to.

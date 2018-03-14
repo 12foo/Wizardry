@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "ebwizardry:basic_fire_wand"
+        }
+    },
+    "title": {
+        "translate": "achievement.elemental"
+    },
+    "description": {
+        "translate": "achievement.elemental.desc"
+    },
+    "parent": "ebwizardry:arcane_initiate",
+    "criteria": {
+        "criteria_0": {
+            "trigger": "ebwizardry:trigger_elemental"
+        }
+    }
+}

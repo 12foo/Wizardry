@@ -1,11 +1,9 @@
 package electroblob.wizardry.spell;
 
-import java.util.List;
-
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.constants.SpellType;
 import electroblob.wizardry.constants.Tier;
-import electroblob.wizardry.registry.WizardryAchievements;
+import electroblob.wizardry.registry.WizardryAdvancementTriggers;
 import electroblob.wizardry.registry.WizardryBlocks;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardrySounds;
@@ -17,11 +15,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumAction;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class IceAge extends Spell {
 
@@ -58,7 +59,7 @@ public class IceAge extends Spell {
 						target.extinguish();
 					}
 
-					if(target instanceof EntityBlaze) caster.addStat(WizardryAchievements.freeze_blaze, 1);
+					if(target instanceof EntityBlaze) WizardryAdvancementTriggers.freeze_blaze.triggerFor((EntityPlayerMP)caster);
 
 					if(target instanceof EntityLiving){
 

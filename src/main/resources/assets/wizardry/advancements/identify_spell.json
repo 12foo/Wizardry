@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "ebwizardry:identification_scroll"
+        }
+    },
+    "title": {
+        "translate": "achievement.identify_spell"
+    },
+    "description": {
+        "translate": "achievement.identify_spell.desc"
+    },
+    "parent": "ebwizardry:arcane_initiate",
+    "criteria": {
+        "criteria_0": {
+            "trigger": "ebwizardry:trigger_identify_spell"
+        }
+    }
+}

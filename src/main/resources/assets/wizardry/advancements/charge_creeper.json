@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "minecraft:gunpowder"
+        }
+    },
+    "title": {
+        "translate": "achievement.charge_creeper"
+    },
+    "description": {
+        "translate": "achievement.charge_creeper.desc"
+    },
+    "parent": "ebwizardry:arcane_initiate",
+    "criteria": {
+        "criteria_0": {
+            "trigger": "ebwizardry:trigger_charge_creeper"
+        }
+    }
+}

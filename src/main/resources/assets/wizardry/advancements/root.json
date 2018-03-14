@@ -1,0 +1,24 @@
+{
+    "display": {
+        "icon": {
+            "item": "ebwizardry:wizard_handbook"
+        }
+    },
+    "title": {
+        "translate": "itemGroup.wizardry"
+    },
+    "show_toast": false,
+    "announce_to_chat": false,
+    "criteria": {
+        "criteria_0": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "ebwizardry:magic_crystal"
+                    }
+                ]
+            }
+        }
+    }
+}

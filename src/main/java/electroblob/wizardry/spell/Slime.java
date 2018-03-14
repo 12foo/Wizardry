@@ -5,7 +5,7 @@ import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.constants.SpellType;
 import electroblob.wizardry.constants.Tier;
 import electroblob.wizardry.entity.living.EntityMagicSlime;
-import electroblob.wizardry.registry.WizardryAchievements;
+import electroblob.wizardry.registry.WizardryAdvancementTriggers;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardrySounds;
 import electroblob.wizardry.util.SpellModifiers;
@@ -16,6 +16,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.util.EnumHand;
@@ -48,7 +49,7 @@ public class Slime extends Spell {
 						this.getNameForTranslationFormatted()));
 			}else if(!(target instanceof EntityMagicSlime)){
 
-				if(target instanceof EntitySkeleton) caster.addStat(WizardryAchievements.slime_skeleton);
+				if(target instanceof EntitySkeleton) WizardryAdvancementTriggers.slime_skeleton.triggerFor((EntityPlayerMP)caster);
 
 				if(!world.isRemote){
 					EntityMagicSlime slime = new EntityMagicSlime(world, caster, target,

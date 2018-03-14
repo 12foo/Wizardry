@@ -33,9 +33,9 @@ public class ItemScroll extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs par2CreativeTabs, NonNullList<ItemStack> list){
+	public void getSubItems(CreativeTabs par2CreativeTabs, NonNullList<ItemStack> list){
 		for(Spell spell : Spell.getSpells(Spell.nonContinuousSpells)){
-			list.add(new ItemStack(item, 1, spell.id()));
+			list.add(new ItemStack(this, 1, spell.id()));
 		}
 	}
 

@@ -1,52 +1,24 @@
 package electroblob.wizardry.entity.living;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Random;
-import java.util.Set;
-
 import com.google.common.base.Predicate;
-
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.constants.Tier;
 import electroblob.wizardry.item.ItemSpellBook;
-import electroblob.wizardry.registry.Spells;
-import electroblob.wizardry.registry.WizardryAchievements;
-import electroblob.wizardry.registry.WizardryItems;
-import electroblob.wizardry.registry.WizardryPotions;
-import electroblob.wizardry.registry.WizardrySounds;
+import electroblob.wizardry.registry.*;
 import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.SpellModifiers;
 import electroblob.wizardry.util.WandHelper;
 import electroblob.wizardry.util.WizardryParticleType;
 import electroblob.wizardry.util.WizardryUtilities;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookAtTradePlayer;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIOpenDoor;
-import net.minecraft.entity.ai.EntityAIRestrictOpenDoor;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAITradePlayer;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.EntityAIWatchClosest2;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
@@ -79,6 +51,8 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfessio
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.*;
 
 @Mod.EventBusSubscriber
 public class EntityWizard extends EntityVillager implements ISpellCaster, IEntityAdditionalSpawnData {
@@ -400,11 +374,11 @@ public class EntityWizard extends EntityVillager implements ISpellCaster, IEntit
 
 		// Achievements
 		if(this.getCustomer() != null){
-			this.getCustomer().addStat(WizardryAchievements.wizard_trade);
+			WizardryAdvancementTriggers.wizard_trade.triggerFor((EntityPlayerMP)this.getCustomer());
 
 			if(merchantrecipe.getItemToSell().getItem() instanceof ItemSpellBook
 					&& Spell.get(merchantrecipe.getItemToSell().getItemDamage()).tier == Tier.MASTER){
-				this.getCustomer().addStat(WizardryAchievements.buy_master_spell);
+				WizardryAdvancementTriggers.buy_master_spell.triggerFor((EntityPlayerMP)this.getCustomer());
 			}
 		}
 
@@ -775,7 +749,7 @@ public class EntityWizard extends EntityVillager implements ISpellCaster, IEntit
 	public boolean attackEntityFrom(DamageSource source, float damage){
 
 		if(source.getTrueSource() instanceof EntityPlayer){
-			((EntityPlayer)source.getTrueSource()).addStat(WizardryAchievements.anger_wizard);
+			WizardryAdvancementTriggers.anger_wizard.triggerFor((EntityPlayerMP)source.getTrueSource());
 		}
 
 		return super.attackEntityFrom(source, damage);
@@ -817,7 +791,7 @@ public class EntityWizard extends EntityVillager implements ISpellCaster, IEntit
 				for(EntityWizard wizard : wizards){
 					if(wizard.isBlockPartOfTower(event.getPos())){
 						wizard.setRevengeTarget(event.getPlayer());
-						event.getPlayer().addStat(WizardryAchievements.anger_wizard);
+						WizardryAdvancementTriggers.anger_wizard.triggerFor((EntityPlayerMP)event.getPlayer());
 					}
 				}
 			}

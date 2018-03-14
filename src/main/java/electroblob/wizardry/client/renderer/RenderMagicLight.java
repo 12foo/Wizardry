@@ -22,8 +22,8 @@ public class RenderMagicLight extends TileEntitySpecialRenderer<TileEntityMagicL
 			"textures/entity/light_aura.png");
 
 	@Override
-	public void renderTileEntityAt(TileEntityMagicLight tileentity, double x, double y, double z, float f,
-			int destroyStage){
+	public void render(TileEntityMagicLight tileentity, double x, double y, double z, float f,
+			int destroyStage, float alpha){
 
 		GlStateManager.pushMatrix();
 

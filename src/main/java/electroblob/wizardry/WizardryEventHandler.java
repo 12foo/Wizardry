@@ -9,12 +9,7 @@ import electroblob.wizardry.event.DiscoverSpellEvent;
 import electroblob.wizardry.event.SpellCastEvent;
 import electroblob.wizardry.item.ItemWand;
 import electroblob.wizardry.item.ItemWizardArmour;
-import electroblob.wizardry.registry.Spells;
-import electroblob.wizardry.registry.WizardryAchievements;
-import electroblob.wizardry.registry.WizardryEnchantments;
-import electroblob.wizardry.registry.WizardryItems;
-import electroblob.wizardry.registry.WizardryPotions;
-import electroblob.wizardry.registry.WizardrySounds;
+import electroblob.wizardry.registry.*;
 import electroblob.wizardry.spell.FreezingWeapon;
 import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.IElementalDamage;
@@ -353,7 +348,7 @@ public final class WizardryEventHandler {
 			}
 
 			if(event.getEntityLiving() == player && event.getSource() instanceof IElementalDamage){
-				player.addStat(WizardryAchievements.self_destruct);
+				WizardryAdvancementTriggers.self_destruct.triggerFor((EntityPlayerMP)player);
 			}
 		}
 	}
@@ -380,13 +375,6 @@ public final class WizardryEventHandler {
 						event.getEntityLiving().posY, event.getEntityLiving().posZ,
 						new ItemStack(WizardryItems.spell_book, 1, id)));
 			}
-		}
-	}
-
-	@SubscribeEvent
-	public static void onItemPickupEvent(EntityItemPickupEvent event){
-		if(event.getItem().getItem().getItem() == WizardryItems.magic_crystal){
-			event.getEntityPlayer().addStat(WizardryAchievements.crystal, 1);
 		}
 	}
 

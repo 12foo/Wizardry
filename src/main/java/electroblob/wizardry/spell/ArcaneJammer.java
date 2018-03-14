@@ -6,7 +6,7 @@ import electroblob.wizardry.constants.SpellType;
 import electroblob.wizardry.constants.Tier;
 import electroblob.wizardry.entity.living.EntityWizard;
 import electroblob.wizardry.event.SpellCastEvent;
-import electroblob.wizardry.registry.WizardryAchievements;
+import electroblob.wizardry.registry.WizardryAdvancementTriggers;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardryPotions;
 import electroblob.wizardry.registry.WizardrySounds;
@@ -16,6 +16,7 @@ import electroblob.wizardry.util.WizardryUtilities;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
@@ -43,7 +44,7 @@ public class ArcaneJammer extends Spell {
 		if(rayTrace != null && rayTrace.typeOfHit == RayTraceResult.Type.ENTITY && WizardryUtilities.isLiving(rayTrace.entityHit)){
 
 			EntityLivingBase entity = (EntityLivingBase)rayTrace.entityHit;
-			if(entity instanceof EntityWizard) caster.addStat(WizardryAchievements.jam_wizard);
+			if(entity instanceof EntityWizard) WizardryAdvancementTriggers.jam_wizard.triggerFor((EntityPlayerMP)caster);
 
 			if(!world.isRemote){
 				entity.addPotionEffect(new PotionEffect(WizardryPotions.arcane_jammer,

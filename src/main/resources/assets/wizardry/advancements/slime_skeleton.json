@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "minecraft:slime_ball"
+        }
+    },
+    "title": {
+        "translate": "achievement.slime_skeleton"
+    },
+    "description": {
+        "translate": "achievement.slime_skeleton.desc"
+    },
+    "parent": "ebwizardry:apprentice",
+    "criteria": {
+        "criteria_0": {
+            "trigger": "ebwizardry:trigger_slime_skeleton"
+        }
+    }
+}

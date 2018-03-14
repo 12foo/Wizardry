@@ -1,7 +1,5 @@
 package electroblob.wizardry.item;
 
-import java.util.List;
-
 import electroblob.wizardry.SpellGlyphData;
 import electroblob.wizardry.WizardData;
 import electroblob.wizardry.Wizardry;
@@ -13,7 +11,7 @@ import electroblob.wizardry.event.SpellCastEvent;
 import electroblob.wizardry.event.SpellCastEvent.Source;
 import electroblob.wizardry.packet.PacketCastSpell;
 import electroblob.wizardry.packet.WizardryPacketHandler;
-import electroblob.wizardry.registry.WizardryAchievements;
+import electroblob.wizardry.registry.WizardryAdvancementTriggers;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardryPotions;
 import electroblob.wizardry.registry.WizardryTabs;
@@ -21,11 +19,14 @@ import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.SpellModifiers;
 import electroblob.wizardry.util.WandHelper;
 import electroblob.wizardry.util.WizardryUtilities;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
@@ -41,6 +42,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * This class is (literally) where the magic happens! All wand types are single instances of this class. There's a lot
@@ -87,7 +91,7 @@ public class ItemWand extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item parItem, CreativeTabs parTab, NonNullList<ItemStack> parListSubItems){
+	public void getSubItems(CreativeTabs parTab, NonNullList<ItemStack> parListSubItems){
 		parListSubItems.add(new ItemStack(this, 1));
 	}
 
@@ -97,11 +101,6 @@ public class ItemWand extends Item {
 		// + 0.5f corrects small float errors rounding down
 		return (int)(super.getMaxDamage(itemstack) * (1.0f + Constants.STORAGE_INCREASE_PER_LEVEL
 				* WandHelper.getUpgradeLevel(itemstack, WizardryItems.storage_upgrade)) + 0.5f);
-	}
-
-	@Override
-	public void onCreated(ItemStack stack, World par2World, EntityPlayer par3EntityPlayer){
-		par3EntityPlayer.addStat(WizardryAchievements.arcane_initiate);
 	}
 
 	@Override
@@ -120,10 +119,8 @@ public class ItemWand extends Item {
 		if(entity instanceof EntityPlayer && this.element != null && this.element != Element.MAGIC){
 			// As it stands, this will trigger every tick. Not ideal, but I can't find a way to detect if a player
 			// has a certain achievement.
-			// EDIT: There is a way to check, using StatFileWriter#hasAchievementUnlocked, but this ends up calling the
-			// same
-			// thing as addStat anyway, meaning there's no point and it's probably not much of a problem anyway.
-			((EntityPlayer)entity).addStat(WizardryAchievements.elemental);
+			// TODO: check if this is somehow triggerable via JSON conditions.
+			WizardryAdvancementTriggers.element_master.triggerFor((EntityPlayerMP)entity);
 		}
 	}
 
@@ -155,7 +152,8 @@ public class ItemWand extends Item {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack itemstack, EntityPlayer player, List<String> text, boolean advanced){
+	public void addInformation(ItemStack itemstack, @Nullable World worldIn, List<String> text, ITooltipFlag flagIn) {
+		EntityPlayer player = Minecraft.getMinecraft().player;
 
 		// +0.5f is necessary due to the error in the way floats are calculated.
 		if(element != null) text.add("\u00A78" + net.minecraft.client.resources.I18n.format("item.wizardry:wand.buff",

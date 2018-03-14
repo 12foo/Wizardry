@@ -1,0 +1,22 @@
+{
+    "display": {
+        "icon": {
+            "item": "ebwizardry:wizard_boots_necromancy"
+        }
+    },
+    "title": {
+        "translate": "achievement.defeat_evil_wizard"
+    },
+    "description": {
+        "translate": "achievement.defeat_evil_wizard.desc"
+    },
+    "parent": "ebwizardry:wizard_trade",
+    "criteria": {
+        "criteria_0": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": "ebwizardry:evil_wizard"
+            }
+        }
+    }
+}

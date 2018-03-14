@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "ebwizardry:spell_book"
+        }
+    },
+    "title": {
+        "translate": "achievement.buy_master_spell"
+    },
+    "description": {
+        "translate": "achievement.buy_master_spell.desc"
+    },
+    "parent": "ebwizardry:wizard_trade",
+    "criteria": {
+        "criteria_0": {
+            "trigger": "ebwizardry:trigger_buy_master_spell"
+        }
+    }
+}

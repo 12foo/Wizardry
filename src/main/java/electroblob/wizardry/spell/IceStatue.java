@@ -4,7 +4,7 @@ import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.constants.SpellType;
 import electroblob.wizardry.constants.Tier;
-import electroblob.wizardry.registry.WizardryAchievements;
+import electroblob.wizardry.registry.WizardryAdvancementTriggers;
 import electroblob.wizardry.registry.WizardryBlocks;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardrySounds;
@@ -15,6 +15,7 @@ import electroblob.wizardry.util.WizardryUtilities;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -52,7 +53,7 @@ public class IceStatue extends Spell {
 			// Stops the entity looking red while frozen and the resulting z-fighting
 			target.hurtTime = 0;
 
-			if(target instanceof EntityBlaze) caster.addStat(WizardryAchievements.freeze_blaze, 1);
+			if(target instanceof EntityBlaze) WizardryAdvancementTriggers.freeze_blaze.triggerFor((EntityPlayerMP)caster);
 
 			// Short mobs such as spiders and pigs
 			if((target.height < 1.2 || target.isChild()) && WizardryUtilities.canBlockBeReplaced(world, pos)){

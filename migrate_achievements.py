@@ -1,10 +1,10 @@
 import os, json, sys
 
+modid = "ebwizardry"
+
 here = os.path.dirname(os.path.realpath(__file__))
 source = os.path.join(here, "src", "main", "java", "electroblob", "wizardry", "registry", "WizardryAchievements.java")
-dest = os.path.join(here, "src", "main", "resources", "assets", "wizardry", "advancements")
-
-modid = "ebwizardry"
+dest = os.path.join(here, "src", "main", "resources", "assets", modid, "advancements")
 
 if not os.path.isfile(source):
     print("Can't find input file: ", source)

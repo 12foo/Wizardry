@@ -1,82 +1,26 @@
 package electroblob.wizardry.registry;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.constants.Tier;
 import electroblob.wizardry.entity.EntityArc;
 import electroblob.wizardry.entity.EntityMeteor;
 import electroblob.wizardry.entity.EntityShield;
-import electroblob.wizardry.entity.construct.EntityArrowRain;
-import electroblob.wizardry.entity.construct.EntityBlackHole;
-import electroblob.wizardry.entity.construct.EntityBlizzard;
-import electroblob.wizardry.entity.construct.EntityBubble;
-import electroblob.wizardry.entity.construct.EntityDecay;
-import electroblob.wizardry.entity.construct.EntityEarthquake;
-import electroblob.wizardry.entity.construct.EntityFireRing;
-import electroblob.wizardry.entity.construct.EntityFireSigil;
-import electroblob.wizardry.entity.construct.EntityForcefield;
-import electroblob.wizardry.entity.construct.EntityFrostSigil;
-import electroblob.wizardry.entity.construct.EntityHailstorm;
-import electroblob.wizardry.entity.construct.EntityHammer;
-import electroblob.wizardry.entity.construct.EntityHealAura;
-import electroblob.wizardry.entity.construct.EntityIceSpike;
-import electroblob.wizardry.entity.construct.EntityLightningPulse;
-import electroblob.wizardry.entity.construct.EntityLightningSigil;
-import electroblob.wizardry.entity.construct.EntityTornado;
-import electroblob.wizardry.entity.living.EntityBlazeMinion;
-import electroblob.wizardry.entity.living.EntityDecoy;
-import electroblob.wizardry.entity.living.EntityEvilWizard;
-import electroblob.wizardry.entity.living.EntityIceGiant;
-import electroblob.wizardry.entity.living.EntityIceWraith;
-import electroblob.wizardry.entity.living.EntityLightningWraith;
-import electroblob.wizardry.entity.living.EntityMagicSlime;
-import electroblob.wizardry.entity.living.EntityPhoenix;
-import electroblob.wizardry.entity.living.EntityShadowWraith;
-import electroblob.wizardry.entity.living.EntitySilverfishMinion;
-import electroblob.wizardry.entity.living.EntitySkeletonMinion;
-import electroblob.wizardry.entity.living.EntitySpiderMinion;
-import electroblob.wizardry.entity.living.EntitySpiritHorse;
-import electroblob.wizardry.entity.living.EntitySpiritWolf;
-import electroblob.wizardry.entity.living.EntityStormElemental;
-import electroblob.wizardry.entity.living.EntityWitherSkeletonMinion;
-import electroblob.wizardry.entity.living.EntityWizard;
-import electroblob.wizardry.entity.living.EntityZombieMinion;
-import electroblob.wizardry.entity.projectile.EntityDarknessOrb;
-import electroblob.wizardry.entity.projectile.EntityDart;
-import electroblob.wizardry.entity.projectile.EntityFirebolt;
-import electroblob.wizardry.entity.projectile.EntityFirebomb;
-import electroblob.wizardry.entity.projectile.EntityForceArrow;
-import electroblob.wizardry.entity.projectile.EntityForceOrb;
-import electroblob.wizardry.entity.projectile.EntityIceCharge;
-import electroblob.wizardry.entity.projectile.EntityIceLance;
-import electroblob.wizardry.entity.projectile.EntityIceShard;
-import electroblob.wizardry.entity.projectile.EntityLightningArrow;
-import electroblob.wizardry.entity.projectile.EntityLightningDisc;
-import electroblob.wizardry.entity.projectile.EntityMagicMissile;
-import electroblob.wizardry.entity.projectile.EntityPoisonBomb;
-import electroblob.wizardry.entity.projectile.EntitySmokeBomb;
-import electroblob.wizardry.entity.projectile.EntitySpark;
-import electroblob.wizardry.entity.projectile.EntitySparkBomb;
-import electroblob.wizardry.entity.projectile.EntityThunderbolt;
+import electroblob.wizardry.entity.construct.*;
+import electroblob.wizardry.entity.living.*;
+import electroblob.wizardry.entity.projectile.*;
 import electroblob.wizardry.loot.RandomSpell;
 import electroblob.wizardry.loot.WizardSpell;
-import electroblob.wizardry.tileentity.TileEntityArcaneWorkbench;
-import electroblob.wizardry.tileentity.TileEntityMagicLight;
-import electroblob.wizardry.tileentity.TileEntityPlayerSave;
-import electroblob.wizardry.tileentity.TileEntityStatue;
-import electroblob.wizardry.tileentity.TileEntityTimer;
+import electroblob.wizardry.tileentity.*;
 import electroblob.wizardry.util.WizardryUtilities;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
@@ -84,6 +28,9 @@ import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class responsible for registering all the things that don't have (or need) instances: entities, loot tables, recipes,
@@ -242,13 +189,12 @@ public final class WizardryRegistry {
 
 		// TODO: May need fixing
 		List<Biome> biomes = new ArrayList<Biome>();
-		for(Biome biome : Biome.EXPLORATION_BIOMES_LIST){
-			if(biome != null){
-				biomes.add(biome);
-			}
-		}
-		biomes.remove(Biomes.MUSHROOM_ISLAND);
-		biomes.remove(Biomes.MUSHROOM_ISLAND_SHORE);
+		Biome.REGISTRY.iterator().forEachRemaining((biome) -> {
+			if (biome == null) return;
+			if (biome == Biomes.MUSHROOM_ISLAND) return;
+			if (biome == Biomes.MUSHROOM_ISLAND_SHORE) return;
+			biomes.add(biome);
+		});
 		// For reference: 5, 1, 1 are the parameters for the witch in vanilla.
 		EntityRegistry.addSpawn(EntityEvilWizard.class, 3, 1, 1, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
 
@@ -277,61 +223,39 @@ public final class WizardryRegistry {
 		ItemStack goldNuggetStack = new ItemStack(Items.GOLD_NUGGET);
 		ItemStack stickStack = new ItemStack(Items.STICK);
 		ItemStack bookStack = new ItemStack(Items.BOOK);
-		ItemStack stringStack = new ItemStack(Items.STRING);
 		ItemStack spellBookStack = new ItemStack(WizardryItems.spell_book, 1, Spells.magic_missile.id());
-		ItemStack arcaneWorkbenchStack = new ItemStack(WizardryBlocks.arcane_workbench);
-		ItemStack stoneStack = new ItemStack(Blocks.STONE);
-		ItemStack lapisBlockStack = new ItemStack(Blocks.LAPIS_BLOCK);
-		ItemStack purpleCarpetStack = new ItemStack(Blocks.CARPET, 1, 10);
-		ItemStack wizardHandbookStack = new ItemStack(WizardryItems.wizard_handbook);
-		ItemStack crystalFlowerStack = new ItemStack(WizardryBlocks.crystal_flower);
+		Ingredient crystalFlowerStack = Ingredient.fromStacks(new ItemStack(WizardryBlocks.crystal_flower));
 		ItemStack magicCrystalStack1 = new ItemStack(WizardryItems.magic_crystal, 2);
 		ItemStack magicCrystalStack2 = new ItemStack(WizardryItems.magic_crystal, 9);
-		ItemStack crystalBlockStack = new ItemStack(WizardryBlocks.crystal_block);
+		Ingredient crystalBlockStack = Ingredient.fromStacks(new ItemStack(WizardryBlocks.crystal_block));
 		ItemStack manaFlaskStack = new ItemStack(WizardryItems.mana_flask);
-		ItemStack bottleStack = new ItemStack(Items.GLASS_BOTTLE);
-		ItemStack gunpowderStack = new ItemStack(Items.GUNPOWDER);
-		ItemStack blazePowderStack = new ItemStack(Items.BLAZE_POWDER);
-		ItemStack spiderEyeStack = new ItemStack(Items.SPIDER_EYE);
+		Ingredient bottleStack = Ingredient.fromStacks(new ItemStack(Items.GLASS_BOTTLE));
+		Ingredient gunpowderStack = Ingredient.fromStacks(new ItemStack(Items.GUNPOWDER));
+		Ingredient blazePowderStack = Ingredient.fromStacks(new ItemStack(Items.BLAZE_POWDER));
+		Ingredient spiderEyeStack = Ingredient.fromStacks(new ItemStack(Items.SPIDER_EYE));
 		// Coal or charcoal is equally fine, hence the wildcard value
-		ItemStack coalStack = new ItemStack(Items.COAL, 1, OreDictionary.WILDCARD_VALUE);
+		Ingredient coalStack = Ingredient.fromStacks(new ItemStack(Items.COAL, 1, OreDictionary.WILDCARD_VALUE));
 		ItemStack firebombStack = new ItemStack(WizardryItems.firebomb, 3);
 		ItemStack poisonBombStack = new ItemStack(WizardryItems.poison_bomb, 3);
 		ItemStack smokeBombStack = new ItemStack(WizardryItems.smoke_bomb, 3);
-		ItemStack transportationStoneStack = new ItemStack(WizardryBlocks.transportation_stone, 2);
-		ItemStack silkStack = new ItemStack(WizardryItems.magic_silk);
-		ItemStack silkStack1 = new ItemStack(WizardryItems.magic_silk, 2);
-		ItemStack hatStack = new ItemStack(WizardryItems.wizard_hat);
-		ItemStack robeStack = new ItemStack(WizardryItems.wizard_robe);
-		ItemStack leggingsStack = new ItemStack(WizardryItems.wizard_leggings);
-		ItemStack bootsStack = new ItemStack(WizardryItems.wizard_boots);
 		ItemStack scrollStack = new ItemStack(WizardryItems.blank_scroll);
-		ItemStack paperStack = new ItemStack(Items.PAPER);
+		Ingredient paperStack = Ingredient.fromStacks(new ItemStack(Items.PAPER));
+		Ingredient stringStack = Ingredient.fromStacks(new ItemStack(Items.STRING));
 
-		GameRegistry.addRecipe(magicWandStack, "  x", " y ", "z  ", 'x', magicCrystalStack, 'y', stickStack, 'z', goldNuggetStack);
-		GameRegistry.addRecipe(spellBookStack, " x ", "xyx", " x ", 'x', magicCrystalStack, 'y', bookStack);
-		GameRegistry.addRecipe(arcaneWorkbenchStack, "vwv", "xyx", "zzz", 'v', goldNuggetStack, 'w', purpleCarpetStack, 'x', magicCrystalStack, 'y', lapisBlockStack, 'z', stoneStack);
-		GameRegistry.addRecipe(manaFlaskStack, "yyy", "yxy", "yyy", 'x', bottleStack, 'y', magicCrystalStack);
-		GameRegistry.addRecipe(transportationStoneStack, " x ", "xyx", " x ", 'x', stoneStack, 'y', magicCrystalStack);
-		GameRegistry.addRecipe(hatStack, "yyy", "y y", 'y', silkStack);
-		GameRegistry.addRecipe(robeStack, "y y", "yyy", "yyy", 'y', silkStack);
-		GameRegistry.addRecipe(leggingsStack, "yyy", "y y", "y y", 'y', silkStack);
-		GameRegistry.addRecipe(bootsStack, "y y", "y y", 'y', silkStack);
-		GameRegistry.addRecipe(silkStack1, " x ", "xyx", " x ", 'x', stringStack, 'y', magicCrystalStack);
-		GameRegistry.addRecipe(crystalBlockStack, "zzz", "zzz", "zzz", 'z', magicCrystalStack);
+		GameRegistry.addShapedRecipe(new ResourceLocation(Wizardry.MODID, "recipes/magic_wand"), null, magicWandStack, "  x", " y ", "z  ", 'x', magicCrystalStack, 'y', stickStack, 'z', goldNuggetStack);
+		GameRegistry.addShapedRecipe(new ResourceLocation(Wizardry.MODID, "recipes/spell_book"), null, spellBookStack, " x ", "xyx", " x ", 'x', magicCrystalStack, 'y', bookStack);
 
-		GameRegistry.addShapelessRecipe(wizardHandbookStack, bookStack, magicCrystalStack);
-		GameRegistry.addShapelessRecipe(magicCrystalStack1, crystalFlowerStack);
-		GameRegistry.addShapelessRecipe(magicCrystalStack2, crystalBlockStack);
+		GameRegistry.addShapelessRecipe(new ResourceLocation(Wizardry.MODID, "recipes/magic_crystal_1"), null, magicCrystalStack1, crystalFlowerStack);
+		GameRegistry.addShapelessRecipe(new ResourceLocation(Wizardry.MODID, "recipes/magic_crystal_2"), null, magicCrystalStack2, crystalBlockStack);
 
-		if(Wizardry.settings.firebombIsCraftable) GameRegistry.addShapelessRecipe(firebombStack, bottleStack, gunpowderStack, blazePowderStack, blazePowderStack);
-		if(Wizardry.settings.poisonBombIsCraftable) GameRegistry.addShapelessRecipe(poisonBombStack, bottleStack, gunpowderStack, spiderEyeStack, spiderEyeStack);
-		if(Wizardry.settings.smokeBombIsCraftable) GameRegistry.addShapelessRecipe(smokeBombStack, bottleStack, gunpowderStack, coalStack, coalStack);
+		if(Wizardry.settings.firebombIsCraftable) GameRegistry.addShapelessRecipe(new ResourceLocation(Wizardry.MODID, "recipes/fire_bomb"), null, firebombStack, bottleStack, gunpowderStack, blazePowderStack, blazePowderStack);
+		if(Wizardry.settings.poisonBombIsCraftable) GameRegistry.addShapelessRecipe(new ResourceLocation(Wizardry.MODID, "recipes/poison_bomb"), null, poisonBombStack, bottleStack, gunpowderStack, spiderEyeStack, spiderEyeStack);
+		if(Wizardry.settings.smokeBombIsCraftable) GameRegistry.addShapelessRecipe(new ResourceLocation(Wizardry.MODID, "recipes/smoke_bomb"), null, smokeBombStack, bottleStack, gunpowderStack, coalStack, coalStack);
 
 		if(Wizardry.settings.useAlternateScrollRecipe){
-			GameRegistry.addShapelessRecipe(scrollStack, paperStack, stringStack, magicCrystalStack);
+			GameRegistry.addShapelessRecipe(new ResourceLocation(Wizardry.MODID, "recipes/blank_scroll"), null, scrollStack, paperStack, stringStack, Ingredient.fromStacks(magicCrystalStack));
 		}else{
-			GameRegistry.addShapelessRecipe(scrollStack, paperStack, stringStack);
+			GameRegistry.addShapelessRecipe(new ResourceLocation(Wizardry.MODID, "recipes/blank_scroll"), null, scrollStack, paperStack, stringStack);
 		}
 
 		// Mana flask recipes
@@ -340,16 +264,17 @@ public final class WizardryRegistry {
 		for(Element element : Element.values()){
 			for(Tier tier : Tier.values()){
 				miscWandStack = new ItemStack(WizardryUtilities.getWand(tier, element), 1, OreDictionary.WILDCARD_VALUE);
-				GameRegistry.addShapelessRecipe(miscWandStack, miscWandStack, manaFlaskStack);
+				GameRegistry.addShapelessRecipe(new ResourceLocation(Wizardry.MODID, "recipes/flask_wand_" + element.getUnlocalisedName() + "_" + tier.getUnlocalisedName()), null, miscWandStack, Ingredient.fromStacks(miscWandStack), Ingredient.fromStacks(manaFlaskStack));
 			}
 		}
+
 
 		ItemStack miscArmourStack;
 
 		for(Element element : Element.values()){
 			for(EntityEquipmentSlot slot : WizardryUtilities.ARMOUR_SLOTS){
 				miscArmourStack = new ItemStack(WizardryUtilities.getArmour(element, slot), 1, OreDictionary.WILDCARD_VALUE);
-				GameRegistry.addShapelessRecipe(miscArmourStack, miscArmourStack, manaFlaskStack);
+				GameRegistry.addShapelessRecipe(new ResourceLocation(Wizardry.MODID, "recipes/flask_armour_" + element.getUnlocalisedName() + "_" + slot.getName()), null, miscArmourStack, Ingredient.fromStacks(miscArmourStack), Ingredient.fromStacks(manaFlaskStack));
 			}
 		}
 	}

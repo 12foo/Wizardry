@@ -1,21 +1,13 @@
 package electroblob.wizardry.registry;
 
 import electroblob.wizardry.Wizardry;
-import electroblob.wizardry.block.BlockArcaneWorkbench;
-import electroblob.wizardry.block.BlockCrystalFlower;
-import electroblob.wizardry.block.BlockCrystalOre;
-import electroblob.wizardry.block.BlockMagicLight;
-import electroblob.wizardry.block.BlockSnare;
-import electroblob.wizardry.block.BlockSpectral;
-import electroblob.wizardry.block.BlockStatue;
-import electroblob.wizardry.block.BlockTransportationStone;
-import electroblob.wizardry.block.BlockVanishingCobweb;
+import electroblob.wizardry.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 /**
  * Class responsible for defining, storing and registering all of wizardry's blocks.

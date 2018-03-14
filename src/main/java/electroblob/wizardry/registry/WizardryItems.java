@@ -3,6 +3,7 @@ package electroblob.wizardry.registry;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -42,7 +43,6 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
 /**
  * Class responsible for defining, storing and registering all of wizardry's items. Also registers the ItemBlocks for

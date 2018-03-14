@@ -82,9 +82,7 @@ public class ItemFlamingAxe extends ItemAxe implements IConjuredItem {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	// Why does this method pass in an item as an argument? It is always the same item the method is invoked on.
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> items){
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items){
 		items.add(new ItemStack(this, 1));
 	}
 

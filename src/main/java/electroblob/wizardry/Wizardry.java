@@ -1,5 +1,6 @@
 package electroblob.wizardry;
 
+import net.minecraftforge.event.RegistryEvent;
 import org.apache.logging.log4j.Logger;
 
 import electroblob.wizardry.command.CommandCastSpell;
@@ -24,7 +25,6 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
@@ -200,17 +200,15 @@ public class Wizardry {
 	}
 
 	// 2.1 changed some item ids, so this fixes them for existing worlds
-	// NOTE: Needs changing to RegistryEvent.MissingMapping in 1.12, or just removing since nobody updates minecraft
-	// versions when using mods.
-	@EventHandler
-	public static void onMissingMappingEvent(FMLMissingMappingsEvent event){
+	@SubscribeEvent
+	public void onMissingMappingEvent(RegistryEvent.MissingMappings<Item> event){
 		// Just get, not getAll, since the mod id didn't change!
-		for(FMLMissingMappingsEvent.MissingMapping mapping : event.get()){
-			if(mapping.type == Type.ITEM && mapping.resourceLocation.getResourceDomain().equals(Wizardry.MODID)){
+		for(RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getMappings()){
+			if(mapping.key.getResourceDomain().equals(Wizardry.MODID)){
 
 				Item replacement = null;
 
-				switch(mapping.resourceLocation.getResourcePath()){
+				switch(mapping.key.getResourcePath()){
 
 				case "wand_basic": replacement = WizardryItems.magic_wand; break;
 				case "wand_basic_fire": replacement = WizardryItems.basic_fire_wand; break;

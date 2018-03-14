@@ -665,9 +665,9 @@ public final class WizardryUtilities {
 		float f1 = 1F / (float)textureHeight;
 
 		// Essentially the same as getting the tessellator. For most code, you'll want the tessellator AND the
-		// vertexbuffer
+		// BufferBuilder
 		// stored in local variables.
-		net.minecraft.client.renderer.VertexBuffer buffer = net.minecraft.client.renderer.Tessellator.getInstance()
+		net.minecraft.client.renderer.BufferBuilder buffer = net.minecraft.client.renderer.Tessellator.getInstance()
 				.getBuffer();
 		// Equivalent of tessellator.startDrawingQuads()
 		buffer.begin(org.lwjgl.opengl.GL11.GL_QUADS,

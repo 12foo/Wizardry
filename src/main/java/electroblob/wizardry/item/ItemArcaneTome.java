@@ -4,14 +4,18 @@ import java.util.List;
 
 import electroblob.wizardry.constants.Tier;
 import electroblob.wizardry.registry.WizardryTabs;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class ItemArcaneTome extends Item {
 
@@ -23,10 +27,9 @@ public class ItemArcaneTome extends Item {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> list){
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		for(int i = 1; i < Tier.values().length; i++){
-			list.add(new ItemStack(item, 1, i));
+			items.add(new ItemStack(this, 1, i));
 		}
 	}
 
@@ -51,7 +54,7 @@ public class ItemArcaneTome extends Item {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean showAdvanced){
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		Tier tier = Tier.values()[stack.getItemDamage()];
 		Tier tier2 = Tier.values()[stack.getItemDamage() - 1];
 		tooltip.add(tier.getDisplayNameWithFormatting());

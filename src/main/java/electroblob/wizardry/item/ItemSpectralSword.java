@@ -73,8 +73,7 @@ public class ItemSpectralSword extends ItemSword implements IConjuredItem {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems){
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems){
 		subItems.add(new ItemStack(this, 1));
 	}
 

@@ -36,7 +36,7 @@ public class ParticleBlizzard extends ParticleSnow {
 	}
 
 	// @Override
-	// public void renderParticle(VertexBuffer buffer, Entity entity, float partialTicks, float rotationX, float
+	// public void renderParticle(BufferBuilder buffer, Entity entity, float partialTicks, float rotationX, float
 	// rotationZ, float rotationYZ, float rotationXY, float rotationXZ){
 	// if(this.particleAge < this.particleMaxAge / 3 || (this.particleAge + this.particleMaxAge) / 3 % 2 == 0){
 	// super.renderParticle(buffer, entity, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);

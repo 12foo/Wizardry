@@ -3,6 +3,7 @@ package electroblob.wizardry.client.model;
 import electroblob.wizardry.registry.WizardryBlocks;
 import electroblob.wizardry.registry.WizardryItems;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -166,15 +167,13 @@ public final class WizardryItemModels {
 	 * Registers an item model, using the item's registry name as the model name (this convention makes it easier to
 	 * keep track of everything). Variant defaults to "normal". Registers the model for metadata 0 automatically, plus
 	 * all the other metadata values that the item can take, as defined in
-	 * {@link Item#getSubItems(Item, net.minecraft.creativetab.CreativeTabs, java.util.List)}. The passed in item
-	 * <b>must</b> allow null to be passed in for the creative tab parameter in the aforementioned method, or a
-	 * {@link NullPointerException} will result.
+	 * {@link Item#getSubItems(CreativeTabs, NonNullList)}.
 	 */
 	private static void registerItemModel(Item item){
 
 		if(item.getHasSubtypes()){
 			NonNullList<ItemStack> items = NonNullList.create();
-			item.getSubItems(item, null, items); // Client-only method, but we're client-side so this is OK.
+			item.getSubItems(null, items); // Client-only method, but we're client-side so this is OK.
 			for(ItemStack stack : items){
 				ModelLoader.setCustomModelResourceLocation(item, stack.getMetadata(),
 						new ModelResourceLocation(item.getRegistryName(), "inventory"));

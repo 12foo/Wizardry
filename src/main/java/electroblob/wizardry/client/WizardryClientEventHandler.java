@@ -1,7 +1,5 @@
 package electroblob.wizardry.client;
 
-import org.lwjgl.opengl.GL11;
-
 import electroblob.wizardry.WizardData;
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.constants.Constants;
@@ -17,10 +15,10 @@ import electroblob.wizardry.tileentity.ContainerArcaneWorkbench;
 import electroblob.wizardry.util.WandHelper;
 import electroblob.wizardry.util.WizardryUtilities;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
@@ -29,17 +27,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.client.event.MouseEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.relauncher.Side;
+import org.lwjgl.opengl.GL11;
 
 /**
  * Event handler responsible for all client-side only events, mostly rendering.
@@ -153,7 +146,7 @@ public final class WizardryClientEventHandler {
 				&& rayTrace.entityHit == event.getEntity() && properties != null && properties.selectedMinion != null){
 
 			Tessellator tessellator = Tessellator.getInstance();
-			VertexBuffer buffer = tessellator.getBuffer();
+			BufferBuilder buffer = tessellator.getBuffer();
 
 			GlStateManager.pushMatrix();
 
@@ -194,7 +187,7 @@ public final class WizardryClientEventHandler {
 		if(properties != null && properties.selectedMinion != null && properties.selectedMinion.get() == event.getEntity()){
 
 			Tessellator tessellator = Tessellator.getInstance();
-			VertexBuffer buffer = tessellator.getBuffer();
+			BufferBuilder buffer = tessellator.getBuffer();
 
 			GlStateManager.pushMatrix();
 
@@ -233,11 +226,11 @@ public final class WizardryClientEventHandler {
 
 		// Sixth sense
 		if(mc.player.isPotionActive(WizardryPotions.sixth_sense) && !(event.getEntity() instanceof EntityArmorStand) && event.getEntity() != mc.player
-				&& mc.player.getActivePotionEffect(WizardryPotions.sixth_sense) != null && event.getEntity().getDistanceToEntity(mc.player) < 20
+				&& mc.player.getActivePotionEffect(WizardryPotions.sixth_sense) != null && event.getEntity().getDistance(mc.player) < 20
 						* (1 + mc.player.getActivePotionEffect(WizardryPotions.sixth_sense).getAmplifier() * Constants.RANGE_INCREASE_PER_LEVEL)){
 
 			Tessellator tessellator = Tessellator.getInstance();
-			VertexBuffer buffer = tessellator.getBuffer();
+			BufferBuilder buffer = tessellator.getBuffer();
 
 			GlStateManager.pushMatrix();
 
@@ -293,7 +286,7 @@ public final class WizardryClientEventHandler {
 			Minecraft.getMinecraft().renderEngine.bindTexture(sixthSenseOverlayTexture);
 
 			Tessellator tessellator = Tessellator.getInstance();
-			VertexBuffer buffer = tessellator.getBuffer();
+			BufferBuilder buffer = tessellator.getBuffer();
 
 			buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 			buffer.pos(0.0D, (double)event.getResolution().getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
@@ -323,7 +316,7 @@ public final class WizardryClientEventHandler {
 			Minecraft.getMinecraft().renderEngine.bindTexture(frostOverlayTexture);
 
 			Tessellator tessellator = Tessellator.getInstance();
-			VertexBuffer buffer = tessellator.getBuffer();
+			BufferBuilder buffer = tessellator.getBuffer();
 
 			buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 			buffer.pos(0.0D, (double)event.getResolution().getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
@@ -371,7 +364,7 @@ public final class WizardryClientEventHandler {
 			GlStateManager.scale(1.1, 1.1, 1.1);
 
 			Tessellator tessellator = Tessellator.getInstance();
-			VertexBuffer buffer = tessellator.getBuffer();
+			BufferBuilder buffer = tessellator.getBuffer();
 
 			buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 
@@ -421,7 +414,7 @@ public final class WizardryClientEventHandler {
 			Minecraft.getMinecraft().renderEngine.bindTexture(shadowWardTexture);
 
 			Tessellator tessellator = Tessellator.getInstance();
-			VertexBuffer buffer = tessellator.getBuffer();
+			BufferBuilder buffer = tessellator.getBuffer();
 
 			GlStateManager.translate(0, 1.2, 0);
 			GlStateManager.rotate(entityplayer.world.getWorldTime() * -2, 0, 0, 1);
@@ -472,7 +465,7 @@ public final class WizardryClientEventHandler {
 
 			Minecraft.getMinecraft().renderEngine.bindTexture(wingTexture);
 			Tessellator tessellator = Tessellator.getInstance();
-			VertexBuffer buffer = tessellator.getBuffer();
+			BufferBuilder buffer = tessellator.getBuffer();
 
 			GlStateManager.pushMatrix();
 
@@ -615,7 +608,7 @@ public final class WizardryClientEventHandler {
 
 	private static void renderShield(Tessellator tessellator){
 
-		VertexBuffer buffer = tessellator.getBuffer();
+		BufferBuilder buffer = tessellator.getBuffer();
 
 		double widthOuter = 0.6d;
 		double heightOuter = 0.7d;

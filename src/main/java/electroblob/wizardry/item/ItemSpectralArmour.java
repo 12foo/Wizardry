@@ -105,7 +105,7 @@ public class ItemSpectralArmour extends ItemArmor implements IConjuredItem {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item parItem, CreativeTabs parTab, NonNullList<ItemStack> parListSubItems){
+	public void getSubItems(CreativeTabs parTab, NonNullList<ItemStack> parListSubItems){
 		parListSubItems.add(new ItemStack(this, 1));
 	}
 

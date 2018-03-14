@@ -36,7 +36,7 @@ public class ItemFirebomb extends Item {
 		if(!world.isRemote){
 			EntityFirebomb firebomb = new EntityFirebomb(world, player);
 			// This is the standard set of parameters for this method, used by snowballs and ender pearls.
-			firebomb.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0f, 1.5f, 1.0f);
+			firebomb.shoot(player, player.rotationPitch, player.rotationYaw, 0.0f, 1.5f, 1.0f);
 			world.spawnEntity(firebomb);
 		}
 
@@ -44,8 +44,7 @@ public class ItemFirebomb extends Item {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item parItem, CreativeTabs parTab, NonNullList<ItemStack> parListSubItems){
-		parListSubItems.add(new ItemStack(this, 1));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		items.add(new ItemStack(this, 1));
 	}
 }

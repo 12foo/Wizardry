@@ -1,23 +1,11 @@
 package electroblob.wizardry;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
-
-import org.apache.commons.lang3.ArrayUtils;
-
 import electroblob.wizardry.entity.living.EntityEvilWizard;
 import electroblob.wizardry.entity.living.EntityWizard;
 import electroblob.wizardry.registry.WizardryBlocks;
 import electroblob.wizardry.util.WizardryUtilities;
-import net.minecraft.block.BlockChest;
-import net.minecraft.block.BlockColored;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockLiquid;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockSlab;
+import net.minecraft.block.*;
 import net.minecraft.block.BlockSlab.EnumBlockHalf;
-import net.minecraft.block.BlockTorch;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
@@ -30,14 +18,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import org.apache.commons.lang3.ArrayUtils;
+
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 public class WizardryWorldGenerator implements IWorldGenerator {
 

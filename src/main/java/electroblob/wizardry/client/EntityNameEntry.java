@@ -35,7 +35,7 @@ public class EntityNameEntry extends StringEntry {
 
 	@Override
 	public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY,
-			boolean isSelected){
+			boolean isSelected, float partial){
 		// super.drawEntry(slotIndex, x, y, listWidth, slotHeight, tessellator, mouseX, mouseY, isSelected);
 		this.btnValue.x = listWidth / 4;
 		this.btnValue.y = y;
@@ -47,7 +47,7 @@ public class EntityNameEntry extends StringEntry {
 			this.btnValue.displayString = this.textFieldValue.getText();
 		// btnValue.packedFGColour = value ? GuiUtils.getColorCode('2', true) : GuiUtils.getColorCode('4', true);
 
-		this.btnValue.drawButton(owningEntryList.getMC(), mouseX, mouseY);
+		this.btnValue.drawButton(owningEntryList.getMC(), mouseX, mouseY, partial);
 	}
 
 	@Override

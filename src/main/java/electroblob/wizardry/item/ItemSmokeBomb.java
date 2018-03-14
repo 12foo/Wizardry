@@ -36,7 +36,7 @@ public class ItemSmokeBomb extends Item {
 		if(!world.isRemote){
 			EntitySmokeBomb smokebomb = new EntitySmokeBomb(world, player);
 			// This is the standard set of parameters for this method, used by snowballs and ender pearls.
-			smokebomb.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0f, 1.5f, 1.0f);
+			smokebomb.shoot(player, player.rotationPitch, player.rotationYaw, 0.0f, 1.5f, 1.0f);
 			world.spawnEntity(smokebomb);
 		}
 
@@ -45,7 +45,7 @@ public class ItemSmokeBomb extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems){
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems){
 		subItems.add(new ItemStack(this, 1));
 	}
 }

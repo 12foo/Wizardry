@@ -285,7 +285,7 @@ public class EntityEvilWizard extends EntityMob implements ISpellCaster, IEntity
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(){
+	protected SoundEvent getHurtSound(DamageSource ds){
 		return SoundEvents.ENTITY_WITCH_HURT;
 	}
 

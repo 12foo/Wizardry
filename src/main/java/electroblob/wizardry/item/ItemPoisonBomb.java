@@ -36,7 +36,7 @@ public class ItemPoisonBomb extends Item {
 		if(!world.isRemote){
 			EntityPoisonBomb poisonbomb = new EntityPoisonBomb(world, player);
 			// This is the standard set of parameters for this method, used by snowballs and ender pearls.
-			poisonbomb.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0f, 1.5f, 1.0f);
+			poisonbomb.shoot(player, player.rotationPitch, player.rotationYaw, 0.0f, 1.5f, 1.0f);
 			world.spawnEntity(poisonbomb);
 		}
 
@@ -45,7 +45,7 @@ public class ItemPoisonBomb extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems){
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems){
 		subItems.add(new ItemStack(this, 1));
 	}
 

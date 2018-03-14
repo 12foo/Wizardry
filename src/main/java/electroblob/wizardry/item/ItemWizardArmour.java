@@ -9,6 +9,7 @@ import electroblob.wizardry.registry.WizardryAchievements;
 import electroblob.wizardry.registry.WizardryTabs;
 import electroblob.wizardry.spell.Petrify;
 import electroblob.wizardry.util.WizardryUtilities;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,12 +22,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 @Mod.EventBusSubscriber
 public class ItemWizardArmour extends ItemArmor implements ISpecialArmor {
@@ -41,7 +45,7 @@ public class ItemWizardArmour extends ItemArmor implements ISpecialArmor {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced){
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
 		if(stack.hasTagCompound() && stack.getTagCompound().getBoolean("legendary")) tooltip
 		.add("\u00A7d" + net.minecraft.client.resources.I18n.format("item.wizardry:wizard_armour.legendary"));
@@ -202,7 +206,7 @@ public class ItemWizardArmour extends ItemArmor implements ISpecialArmor {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems){
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems){
 		subItems.add(new ItemStack(this, 1));
 	}
 

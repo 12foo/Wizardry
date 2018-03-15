@@ -1,12 +1,10 @@
 package electroblob.wizardry.item;
 
-import java.util.List;
-
+import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.constants.Tier;
 import electroblob.wizardry.registry.WizardryTabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,6 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemArcaneTome extends Item {
 
@@ -59,9 +58,9 @@ public class ItemArcaneTome extends Item {
 		Tier tier = Tier.values()[stack.getItemDamage()];
 		Tier tier2 = Tier.values()[stack.getItemDamage() - 1];
 		tooltip.add(tier.getDisplayNameWithFormatting());
-		tooltip.add("\u00A77" + net.minecraft.client.resources.I18n.format("item.wizardry:arcane_tome.desc1",
+		tooltip.add("\u00A77" + net.minecraft.client.resources.I18n.format("item." + Wizardry.MODID + ":arcane_tome.desc1",
 				tier2.getDisplayNameWithFormatting()));
-		tooltip.add("\u00A77" + net.minecraft.client.resources.I18n.format("item.wizardry:arcane_tome.desc2",
+		tooltip.add("\u00A77" + net.minecraft.client.resources.I18n.format("item." + Wizardry.MODID + ":arcane_tome.desc2",
 				tier.getDisplayNameWithFormatting() + "\u00A77"));
 	}
 

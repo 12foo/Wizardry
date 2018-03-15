@@ -49,11 +49,11 @@ public class ItemWizardArmour extends ItemArmor implements ISpecialArmor {
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
 		if(stack.hasTagCompound() && stack.getTagCompound().getBoolean("legendary")) tooltip
-		.add("\u00A7d" + net.minecraft.client.resources.I18n.format("item.wizardry:wizard_armour.legendary"));
+		.add("\u00A7d" + net.minecraft.client.resources.I18n.format("item." + Wizardry.MODID + ":wizard_armour.legendary"));
 		if(element != null)
-			tooltip.add("\u00A78" + net.minecraft.client.resources.I18n.format("item.wizardry:wizard_armour.buff",
+			tooltip.add("\u00A78" + net.minecraft.client.resources.I18n.format("item." + Wizardry.MODID + ":wizard_armour.buff",
 					(int)(Constants.COST_REDUCTION_PER_ARMOUR * 100) + "%", element.getDisplayName()));
-		tooltip.add("\u00A79" + net.minecraft.client.resources.I18n.format("item.wizardry:wizard_armour.mana",
+		tooltip.add("\u00A79" + net.minecraft.client.resources.I18n.format("item." + Wizardry.MODID + ":wizard_armour.mana",
 				(this.getMaxDamage(stack) - this.getDamage(stack)), this.getMaxDamage(stack)));
 	}
 

@@ -2,6 +2,7 @@ package electroblob.wizardry.item;
 
 import java.util.List;
 
+import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.registry.WizardryTabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -38,9 +39,9 @@ public class ItemArmourUpgrade extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(net.minecraft.client.resources.I18n.format("item.wizardry:armour_upgrade.desc1", "\u00A77"));
+		tooltip.add(net.minecraft.client.resources.I18n.format("item." + Wizardry.MODID + ":armour_upgrade.desc1", "\u00A77"));
 		tooltip.add(
-				net.minecraft.client.resources.I18n.format("item.wizardry:armour_upgrade.desc2", "\u00A77", "\u00A7d"));
+				net.minecraft.client.resources.I18n.format("item." + Wizardry.MODID + ":armour_upgrade.desc2", "\u00A77", "\u00A7d"));
 	}
 
 	@Override

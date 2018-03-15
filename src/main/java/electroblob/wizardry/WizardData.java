@@ -173,13 +173,13 @@ public class WizardData implements INBTSerializable<NBTTagCompound> {
 		if(!spellsDiscovered.add(spell)) return false;
 		// If the spell had not already been discovered, achievements can be triggered and the method returns true
 		if(spellsDiscovered.containsAll(Spell.getSpells(Spell::isEnabled))){
-			WizardryAdvancementTriggers.all_spells.triggerFor((EntityPlayerMP)this.player);
+			WizardryAdvancementTriggers.all_spells.triggerFor(this.player);
 		}
 
 		for(Element element : Element.values()){
 			if(element != Element.MAGIC
 					&& spellsDiscovered.containsAll(Spell.getSpells(new Spell.TierElementFilter(null, element)))){
-				WizardryAdvancementTriggers.element_master.triggerFor((EntityPlayerMP)this.player);
+				WizardryAdvancementTriggers.element_master.triggerFor(this.player);
 			}
 		}
 

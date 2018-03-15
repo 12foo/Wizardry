@@ -13,7 +13,6 @@ import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.WandHelper;
 import electroblob.wizardry.util.WizardryUtilities;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -294,7 +293,7 @@ public class ContainerArcaneWorkbench extends Container {
 						newWand.setItemDamage(newWand.getMaxDamage() - (wand.getMaxDamage() - wand.getItemDamage()));
 						this.putStackInSlot(WAND_SLOT, newWand);
 						this.putStackInSlot(UPGRADE_SLOT, ItemStack.EMPTY);
-						WizardryAdvancementTriggers.apprentice.triggerFor((EntityPlayerMP)player);
+						WizardryAdvancementTriggers.apprentice.triggerFor(player);
 					}
 					break;
 
@@ -317,7 +316,7 @@ public class ContainerArcaneWorkbench extends Container {
 						newWand.setItemDamage(newWand.getMaxDamage() - (wand.getMaxDamage() - wand.getItemDamage()));
 						this.putStackInSlot(WAND_SLOT, newWand);
 						this.putStackInSlot(UPGRADE_SLOT, ItemStack.EMPTY);
-						WizardryAdvancementTriggers.master.triggerFor((EntityPlayerMP)player);
+						WizardryAdvancementTriggers.master.triggerFor(player);
 					}
 					break;
 
@@ -371,10 +370,10 @@ public class ContainerArcaneWorkbench extends Container {
 					}
 
 					this.getSlot(UPGRADE_SLOT).decrStackSize(1);
-					WizardryAdvancementTriggers.special_upgrade.triggerFor((EntityPlayerMP)player);
+					WizardryAdvancementTriggers.special_upgrade.triggerFor(player);
 
 					if(WandHelper.getTotalUpgrades(wand) == Tier.MASTER.upgradeLimit){
-						WizardryAdvancementTriggers.max_out_wand.triggerFor((EntityPlayerMP)player);
+						WizardryAdvancementTriggers.max_out_wand.triggerFor(player);
 					}
 				}
 			}
@@ -425,7 +424,7 @@ public class ContainerArcaneWorkbench extends Container {
 				if(!wand.getTagCompound().hasKey("legendary")){
 					wand.getTagCompound().setBoolean("legendary", true);
 					this.putStackInSlot(UPGRADE_SLOT, ItemStack.EMPTY);
-					WizardryAdvancementTriggers.legendary.triggerFor((EntityPlayerMP)player);
+					WizardryAdvancementTriggers.legendary.triggerFor(player);
 				}
 			}
 			// Charges armour by appropriate amount

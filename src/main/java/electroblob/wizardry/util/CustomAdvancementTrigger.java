@@ -8,6 +8,7 @@ import electroblob.wizardry.Wizardry;
 import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.advancements.PlayerAdvancements;
 import net.minecraft.advancements.critereon.AbstractCriterionInstance;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 
@@ -68,10 +69,12 @@ public class CustomAdvancementTrigger implements ICriterionTrigger<CustomAdvance
         return new CustomAdvancementTrigger.Instance(id);
     }
 
-    public void triggerFor(EntityPlayerMP player) {
-        final PlayerAdvancements advances = player.getAdvancements();
+    public void triggerFor(EntityPlayer player) {
         // Fire our dummy criterion manually on all advancements of the player, thereby granting
         // the ones that match it.
-        listeners.get(advances).forEach((listener) -> listener.grantCriterion(advances));
+        if (player instanceof EntityPlayerMP) {
+            final PlayerAdvancements advances = ((EntityPlayerMP) player).getAdvancements();
+            listeners.get(advances).forEach((listener) -> listener.grantCriterion(advances));
+        }
     }
 }

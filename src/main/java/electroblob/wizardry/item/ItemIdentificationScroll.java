@@ -10,7 +10,6 @@ import electroblob.wizardry.util.WizardryUtilities;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -68,7 +67,7 @@ public class ItemIdentificationScroll extends Item {
 							// Identification scrolls give the chat readout in creative mode, otherwise it looks like
 							// nothing happens!
 							properties.discoverSpell(spell);
-							WizardryAdvancementTriggers.identify_spell.triggerFor((EntityPlayerMP)player);
+							WizardryAdvancementTriggers.identify_spell.triggerFor(player);
 							player.playSound(SoundEvents.ENTITY_PLAYER_LEVELUP, 1.25f, 1);
 							if(!player.capabilities.isCreativeMode) stack.shrink(1);
 							if(!world.isRemote) player.sendMessage(new TextComponentTranslation("spell.discover",

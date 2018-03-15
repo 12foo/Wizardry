@@ -15,7 +15,6 @@ import electroblob.wizardry.util.WizardryUtilities;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -53,7 +52,7 @@ public class IceStatue extends Spell {
 			// Stops the entity looking red while frozen and the resulting z-fighting
 			target.hurtTime = 0;
 
-			if(target instanceof EntityBlaze) WizardryAdvancementTriggers.freeze_blaze.triggerFor((EntityPlayerMP)caster);
+			if(target instanceof EntityBlaze) WizardryAdvancementTriggers.freeze_blaze.triggerFor(caster);
 
 			// Short mobs such as spiders and pigs
 			if((target.height < 1.2 || target.isChild()) && WizardryUtilities.canBlockBeReplaced(world, pos)){

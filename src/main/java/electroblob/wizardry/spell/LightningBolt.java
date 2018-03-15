@@ -12,7 +12,6 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
@@ -110,11 +109,11 @@ public class LightningBolt extends Spell {
 					event.getLightning().getEntityData().getUniqueId("summoningPlayer"));
 
 			if(event.getEntity() instanceof EntityCreeper){
-				WizardryAdvancementTriggers.charge_creeper.triggerFor((EntityPlayerMP)player);
+				WizardryAdvancementTriggers.charge_creeper.triggerFor(player);
 			}
 
 			if(event.getEntity() instanceof EntityPig){
-				WizardryAdvancementTriggers.frankenstein.triggerFor((EntityPlayerMP)player);
+				WizardryAdvancementTriggers.frankenstein.triggerFor(player);
 			}
 		}
 

@@ -26,7 +26,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
@@ -121,7 +120,7 @@ public class ItemWand extends Item {
 			// As it stands, this will trigger every tick. Not ideal, but I can't find a way to detect if a player
 			// has a certain achievement.
 			// TODO: check if this is somehow triggerable via JSON conditions.
-			WizardryAdvancementTriggers.element_master.triggerFor((EntityPlayerMP)entity);
+			WizardryAdvancementTriggers.element_master.triggerFor((EntityPlayer)entity);
 		}
 	}
 

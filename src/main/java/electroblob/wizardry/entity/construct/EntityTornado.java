@@ -103,7 +103,7 @@ public class EntityTornado extends EntityMagicConstruct {
 
 					// The 'Not Again...' achievement
 					if(target instanceof EntityPig && WizardryUtilities.getRider(target) instanceof EntityPlayer){
-						WizardryAdvancementTriggers.pig_tornado.triggerFor((EntityPlayerMP)WizardryUtilities.getRider(target));
+						WizardryAdvancementTriggers.pig_tornado.triggerFor((EntityPlayer)WizardryUtilities.getRider(target));
 					}
 				}
 			}

@@ -16,7 +16,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.util.EnumHand;
@@ -49,7 +48,7 @@ public class Slime extends Spell {
 						this.getNameForTranslationFormatted()));
 			}else if(!(target instanceof EntityMagicSlime)){
 
-				if(target instanceof EntitySkeleton) WizardryAdvancementTriggers.slime_skeleton.triggerFor((EntityPlayerMP)caster);
+				if(target instanceof EntitySkeleton) WizardryAdvancementTriggers.slime_skeleton.triggerFor(caster);
 
 				if(!world.isRemote){
 					EntityMagicSlime slime = new EntityMagicSlime(world, caster, target,

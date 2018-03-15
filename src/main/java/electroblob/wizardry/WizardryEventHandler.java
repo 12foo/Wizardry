@@ -12,13 +12,8 @@ import electroblob.wizardry.item.ItemWizardArmour;
 import electroblob.wizardry.registry.*;
 import electroblob.wizardry.spell.FreezingWeapon;
 import electroblob.wizardry.spell.Spell;
-import electroblob.wizardry.util.IElementalDamage;
-import electroblob.wizardry.util.MagicDamage;
+import electroblob.wizardry.util.*;
 import electroblob.wizardry.util.MagicDamage.DamageType;
-import electroblob.wizardry.util.SpellModifiers;
-import electroblob.wizardry.util.WandHelper;
-import electroblob.wizardry.util.WizardryParticleType;
-import electroblob.wizardry.util.WizardryUtilities;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -51,7 +46,6 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -348,7 +342,7 @@ public final class WizardryEventHandler {
 			}
 
 			if(event.getEntityLiving() == player && event.getSource() instanceof IElementalDamage){
-				WizardryAdvancementTriggers.self_destruct.triggerFor((EntityPlayerMP)player);
+				WizardryAdvancementTriggers.self_destruct.triggerFor(player);
 			}
 		}
 	}

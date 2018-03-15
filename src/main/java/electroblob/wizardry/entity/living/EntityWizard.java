@@ -18,7 +18,6 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
@@ -374,11 +373,11 @@ public class EntityWizard extends EntityVillager implements ISpellCaster, IEntit
 
 		// Achievements
 		if(this.getCustomer() != null){
-			WizardryAdvancementTriggers.wizard_trade.triggerFor((EntityPlayerMP)this.getCustomer());
+			WizardryAdvancementTriggers.wizard_trade.triggerFor(this.getCustomer());
 
 			if(merchantrecipe.getItemToSell().getItem() instanceof ItemSpellBook
 					&& Spell.get(merchantrecipe.getItemToSell().getItemDamage()).tier == Tier.MASTER){
-				WizardryAdvancementTriggers.buy_master_spell.triggerFor((EntityPlayerMP)this.getCustomer());
+				WizardryAdvancementTriggers.buy_master_spell.triggerFor(this.getCustomer());
 			}
 		}
 
@@ -749,7 +748,7 @@ public class EntityWizard extends EntityVillager implements ISpellCaster, IEntit
 	public boolean attackEntityFrom(DamageSource source, float damage){
 
 		if(source.getTrueSource() instanceof EntityPlayer){
-			WizardryAdvancementTriggers.anger_wizard.triggerFor((EntityPlayerMP)source.getTrueSource());
+			WizardryAdvancementTriggers.anger_wizard.triggerFor((EntityPlayer)source.getTrueSource());
 		}
 
 		return super.attackEntityFrom(source, damage);
@@ -768,9 +767,7 @@ public class EntityWizard extends EntityVillager implements ISpellCaster, IEntit
 	/**
 	 * Tests whether the block at the given coordinates is part of this wizard's tower.
 	 * 
-	 * @param x
-	 * @param y
-	 * @param z
+	 * @param pos
 	 * @return
 	 */
 	public boolean isBlockPartOfTower(BlockPos pos){
@@ -791,7 +788,7 @@ public class EntityWizard extends EntityVillager implements ISpellCaster, IEntit
 				for(EntityWizard wizard : wizards){
 					if(wizard.isBlockPartOfTower(event.getPos())){
 						wizard.setRevengeTarget(event.getPlayer());
-						WizardryAdvancementTriggers.anger_wizard.triggerFor((EntityPlayerMP)event.getPlayer());
+						WizardryAdvancementTriggers.anger_wizard.triggerFor(event.getPlayer());
 					}
 				}
 			}

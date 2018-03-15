@@ -15,7 +15,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumAction;
 import net.minecraft.util.EnumHand;
@@ -59,7 +58,7 @@ public class IceAge extends Spell {
 						target.extinguish();
 					}
 
-					if(target instanceof EntityBlaze) WizardryAdvancementTriggers.freeze_blaze.triggerFor((EntityPlayerMP)caster);
+					if(target instanceof EntityBlaze) WizardryAdvancementTriggers.freeze_blaze.triggerFor(caster);
 
 					if(target instanceof EntityLiving){
 

@@ -16,7 +16,6 @@ import electroblob.wizardry.util.WizardryUtilities;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
@@ -44,7 +43,7 @@ public class ArcaneJammer extends Spell {
 		if(rayTrace != null && rayTrace.typeOfHit == RayTraceResult.Type.ENTITY && WizardryUtilities.isLiving(rayTrace.entityHit)){
 
 			EntityLivingBase entity = (EntityLivingBase)rayTrace.entityHit;
-			if(entity instanceof EntityWizard) WizardryAdvancementTriggers.jam_wizard.triggerFor((EntityPlayerMP)caster);
+			if(entity instanceof EntityWizard) WizardryAdvancementTriggers.jam_wizard.triggerFor(caster);
 
 			if(!world.isRemote){
 				entity.addPotionEffect(new PotionEffect(WizardryPotions.arcane_jammer,

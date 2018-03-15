@@ -1,5 +1,6 @@
 package electroblob.wizardry.spell;
 
+import com.google.common.collect.Lists;
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.constants.SpellType;
@@ -75,6 +76,13 @@ public abstract class Spell extends IForgeRegistryEntry.Impl<Spell> implements C
 
 	/** Forge registry-based replacement for the internal spells list. */
 	public static IForgeRegistry<Spell> registry;
+
+	/**
+	 * Forge registries don't work on numerical IDs anymore and the ordering is not stable (leading to problems
+	 * with JEI and so on), so we actually have to do that ourselves again to tie up with the spellbook data values.
+	 * Spells are added to this list in the order they are registered.
+	 */
+	public static List<Spell> spellOrder = Lists.newArrayList();
 
 	/** The tier this spell belongs to. */
 	public final Tier tier;
@@ -257,8 +265,10 @@ public abstract class Spell extends IForgeRegistryEntry.Impl<Spell> implements C
 	 * spell has not been registered.
 	 */
 	// This is final so nothing can override it, because that would cause all kinds of problems!
+	// NOTE: since Forge for 1.12, registries no longer use numerical IDs internally, so we do this manually (again)
+	// to be able to stick with numerical IDs.
 	public final int id(){
-		return registry.getValues().indexOf(this);
+		return spellOrder.indexOf(this);
 	}
 
 	/**
@@ -383,10 +393,10 @@ public abstract class Spell extends IForgeRegistryEntry.Impl<Spell> implements C
 	 * better way; see </i>{@link Spell#getSpells(Predicate)}.
 	 */
 	public static Spell get(int id){
-		if(id < 0 || id >= registry.getValues().size()){
+		if(id < 0 || id >= spellOrder.size()){
 			return Spells.none;
 		}
-		Spell spell = registry.getValues().get(id);
+		Spell spell = spellOrder.get(id);
 		return spell == null ? Spells.none : spell;
 	}
 

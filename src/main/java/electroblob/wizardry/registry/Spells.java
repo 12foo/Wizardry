@@ -8,7 +8,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryInternal;
 import net.minecraftforge.registries.RegistryBuilder;
+import net.minecraftforge.registries.RegistryManager;
+
+import javax.annotation.Nullable;
 
 /**
  * Class responsible for defining, storing and registering all of wizardry's spells.
@@ -37,7 +41,16 @@ public final class Spells {
 		builder.setName(new ResourceLocation(Wizardry.MODID, "spells"));
 		builder.setIDRange(0, 5000); // Is there any penalty for using a larger number?
 
-		Spell.registry = builder.create();
+		// Forge registries don't keep a stable internal ordering anymore. Use a callback to add the spell to
+		// an internal ordered list when it is registered.
+		builder.add(new IForgeRegistry.AddCallback<Spell>() {
+            @Override
+            public void onAdd(IForgeRegistryInternal<Spell> owner, RegistryManager stage, int id, Spell obj, @Nullable Spell oldObj) {
+                Spell.spellOrder.add(obj);
+            }
+        });
+
+				Spell.registry = builder.create();
 	}
 
 	// Wizardry 1.0 spells
